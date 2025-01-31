@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "966163984411",
+    "project_id": "task-2ec58",
+    "storage_bucket": "task-2ec58.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966163984411:android:88058a71ebf35a8338c8be",
+        "android_client_info": {
+          "package_name": "com.example.enenni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtTaQLHMMj_S2W2FJLJcDV3RANZFQOsVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
