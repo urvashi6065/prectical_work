@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:email_otp/email_otp.dart';
 import 'package:enenni/Core/constant/app_strings.dart';
+import 'package:enenni/Presntation_screens/Home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -168,7 +170,20 @@ class _OtpVerificationState extends State<OtpVerification> {
                       style: TextStyle(color: Colors.black54, fontSize: 15),
                     ),
                     TextButton(
-                      onPressed: () => snackBar("OTP resend!!"),
+                      onPressed: () {
+                         onPressed: () async {
+                        await EmailOTP.sendOTP(email: widget.email);
+                        snackBar("OTP resend!!");
+                      },
+                      child: const Text(
+                        "RESEND",
+                        style: TextStyle(
+                          color: Color(0xFF91D3B3),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      },
                       child: const Text(
                         "RESEND",
                         style: TextStyle(
@@ -203,19 +218,21 @@ class _OtpVerificationState extends State<OtpVerification> {
                     height: 50,
                     child: TextButton(
                       onPressed: () {
-                        formKey.currentState!.validate();
+                       
                         // conditions for validating
-                        if (currentText.length != 4 || currentText != "1234") {
-                          errorController!.add(ErrorAnimationType
-                              .shake); // Triggering error shake animation
-                          setState(() => hasError = true);
-                        } else {
-                          setState(
-                            () {
-                              hasError = false;
-                              snackBar("OTP Verified!!");
-                            },
+                           print(textEditingController.text);
+
+                        final isVerified =
+                            EmailOTP.verifyOTP(otp: textEditingController.text);
+                        if (isVerified) {
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()),
+                            (_) => false,
                           );
+                        } else {
+                          errorController!.add(ErrorAnimationType.shake);
+                          setState(() => hasError = true);
                         }
                       },
                       child: Center(

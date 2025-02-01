@@ -12,11 +12,11 @@ class AuthService {
     required String password,
     required BuildContext context,
     // required bool isLoading,
-  }) async {
+  }) async {    
     try {
       final userCredentials = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      if (context.mounted) {
+      if (context.mounted) {   
         if (await EmailOTP.sendOTP(email: email)) {
           ScaffoldMessenger.of(context)
               .showSnackBar(const SnackBar(content: Text("OTP has been sent")));
