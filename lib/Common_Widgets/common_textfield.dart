@@ -20,6 +20,7 @@ class CommonTextfield extends StatelessWidget {
         if (value!.isEmpty) {
           return validator;
         }
+        return null;
       },
       decoration: InputDecoration(
           labelText: labText,

@@ -1,5 +1,6 @@
-import 'package:enenni/Authentication/otp_verification.dart';
-import 'package:enenni/Authentication/signup_screen.dart';
+import 'package:email_otp/email_otp.dart';
+import 'package:enenni/Authentication/login_screen.dart';
+import 'package:enenni/Presntation_screens/Home/home_screen.dart';
 import 'package:enenni/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  EmailOTP.config(
+      appName: 'enenni',
+      otpType: OTPType.numeric,
+      emailTheme: EmailTheme.v6,
+      expiry: 1,
+      otpLength: 4);
   runApp(const MyApp());
 }
 
@@ -19,13 +26,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const OtpVerification(),
-    );
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const LoginScreen());
   }
 }

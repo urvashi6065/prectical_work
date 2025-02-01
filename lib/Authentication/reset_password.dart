@@ -1,22 +1,22 @@
-import 'package:enenni/Authentication/reset_password.dart';
-import 'package:enenni/Authentication/signup_screen.dart';
+import 'package:enenni/Authentication/login_screen.dart';
 import 'package:enenni/Common_Widgets/common_textfield.dart';
 import 'package:enenni/Core/constant/app_strings.dart';
 import 'package:enenni/Core/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({super.key});
 
   @override
-  State<LoginScreen> createState() => _SignupScreenState();
+  State<ResetPassword> createState() => _ResetPasswordState();
 }
 
-class _SignupScreenState extends State<LoginScreen> {
+class _ResetPasswordState extends State<ResetPassword> {
   final formKey = GlobalKey<FormState>();
 
+  TextEditingController newPasswordcontroler = TextEditingController();
   TextEditingController emailcontroler = TextEditingController();
-  TextEditingController passwordcontroler = TextEditingController();
+  TextEditingController confirmPasswordcontroler = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,8 @@ class _SignupScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  AppStrings.loginAccount,
+                  AppStrings.resetYourPassword,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 14,
-                ),
-                const Text(
-                  AppStrings.disWelcomeLogin,
                 ),
                 const SizedBox(
                   height: 14,
@@ -59,66 +53,33 @@ class _SignupScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 14,
                 ),
-                const Text(
-                  AppStrings.password,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                CommonTextfield(
-                  labText: AppStrings.enterYourPassword,
-                  iconsP: Icons.lock,
-                  controler: passwordcontroler,
-                  validator: AppStrings.enterYourPassword,
-                ),
-                const SizedBox(
-                  height: 14,
-                ),
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ResetPassword()),
-                            (route) => false,
-                          );
-                        },
-                        child: const Text('Forgot Password?'))),
-                const SizedBox(
-                  height: 14,
-                ),
                 Center(
                     child: OutlinedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            AuthService.login(
-                                email: emailcontroler.text,
-                                password: passwordcontroler.text,
-                                context: context);
+                            AuthService()
+                                .sendPasswordreset(email: emailcontroler.text);
                           }
                         },
-                        child: const Text(AppStrings.login))),
+                        child: const Text(AppStrings.reset))),
                 const SizedBox(
                   height: 14,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(AppStrings.dontHaveAccount),
+                    const Text(AppStrings.baclToLogin),
                     // SizedBox(width: 2,),
                     TextButton(
                         onPressed: () {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignupScreen()),
+                                builder: (context) => const LoginScreen()),
                             (route) => false,
                           );
                         },
-                        child: const Text(AppStrings.signUp))
+                        child: const Text(AppStrings.login))
                   ],
                 )
               ],

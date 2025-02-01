@@ -26,31 +26,31 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0).copyWith(top: 80),
+          padding: const EdgeInsets.all(16.0).copyWith(top: 80),
           child: Form(
             key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   AppStrings.createAnAccount,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 14,
                 ),
-                Text(
+                const Text(
                   AppStrings.disWelcomeSignup,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 14,
                 ),
-                Text(
+                const Text(
                   AppStrings.name,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 CommonTextfield(
@@ -59,14 +59,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   controler: namecontroler,
                   validator: AppStrings.enterYourName,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 14,
                 ),
-                Text(
+                const Text(
                   AppStrings.email,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 CommonTextfield(
@@ -75,14 +75,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   controler: emailcontroler,
                   validator: AppStrings.enterYourEmail,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 14,
                 ),
-                Text(
+                const Text(
                   AppStrings.password,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 CommonTextfield(
@@ -91,7 +91,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   controler: passwordcontroler,
                   validator: AppStrings.enterYourPassword,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 14,
                 ),
                 Center(
@@ -103,25 +103,25 @@ class _SignupScreenState extends State<SignupScreen> {
                                 password: passwordcontroler.text,
                                 context: context);
                           }
-                        }, child: Text(AppStrings.signUp))),
-                SizedBox(
+                        }, child: const Text(AppStrings.signUp))),
+                const SizedBox(
                   height: 14,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(AppStrings.alreadyAccount),
+                    const Text(AppStrings.alreadyAccount),
                     // SizedBox(width: 2,),
                     TextButton(
                         onPressed: () {
                            Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen()),
+                                builder: (context) => const LoginScreen()),
                             (route) => false,
                           );
                         },
-                        child: Text(AppStrings.login))
+                        child: const Text(AppStrings.login))
                   ],
                 )
               ],
